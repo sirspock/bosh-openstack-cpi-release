@@ -88,7 +88,7 @@ module Bosh::OpenStackCloud
     end
 
     def unpack_image(tmp_dir, image_path)
-      result = Bosh::Exec.sh("tar -C #{tmp_dir} -xzf #{image_path} 2>&1", :on_error => :return)
+      result = Bosh::Exec.sh("tar -C #{tmp_dir} -xf #{image_path} 2>&1", :on_error => :return)
       if result.failed?
         @logger.error("Extracting stemcell root image failed in dir #{tmp_dir}, " +
           "tar returned #{result.exit_status}, output: #{result.output}")
